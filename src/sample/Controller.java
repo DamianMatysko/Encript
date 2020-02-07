@@ -23,6 +23,7 @@ public class Controller {
     String data = "";
     String newData = "";
     String keyString = "";
+    boolean sizeOfChar = false;
 
     public void selectFile(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
@@ -49,6 +50,7 @@ public class Controller {
 
 
         keyString = key.getText().toLowerCase();
+        System.out.println(keyString);
         //keyString="abc";
         char keyAsciChar;
         int keyAsciInt;
@@ -56,26 +58,36 @@ public class Controller {
             data = fileReader.nextLine();
             System.out.println(data);
         }
-        int j=0;
+        int j = 0;
         for (int i = 0; i < data.length(); i++) {
             character = data.charAt(i);
             ascicode = character;
             if (ascicode >= 65 && ascicode <= 90 || ascicode >= 97 && ascicode <= 122) {
                 //j++;
-                if (keyString.length()==j){
+                if (keyString.length() == j) {
                     //j-=keyString.length();
-                    j=0;
+                    j = 0;
                 }
                 //pories System.out.println(j);
-                keyAsciChar=keyString.charAt(j);
-                keyAsciInt=keyAsciChar;//int
-                keyAsciInt=keyAsciInt-97;//96
+                keyAsciChar = keyString.charAt(j);
+                sizeOfChar = isBig(character);
 
-                ascicode = keyAsciInt+ascicode;
-                System.out.println(keyAsciInt);
+                keyAsciInt = keyAsciChar;//int
 
-                if (ascicode > 90 && ascicode < 97 || ascicode > 122) {
-                    ascicode -= 26;//divne
+
+                    keyAsciInt = keyAsciInt - 97;//posuno
+
+                ascicode = keyAsciInt + ascicode;
+                //System.out.println(keyAsciInt);
+
+                if (sizeOfChar) {
+                    if (ascicode > 90) {
+                        ascicode -= 26;//divne
+                    }
+                } else {
+                    if (ascicode > 122) {
+                        ascicode -= 26;//divne
+                    }
                 }
                 character = (char) ascicode;
                 j++;
@@ -83,15 +95,15 @@ public class Controller {
             newData += character;
         }
         System.out.println(newData);
-        newData="";
+        newData = "";
         //createFile(newData);
 
     }
+
     public void createFile(String encryptedData) throws IOException {
         File file = new File("C:\\Users\\Firefly\\IdeaProjects\\Encript\\src\\file.txt");
 
-        if (file.createNewFile())
-        {
+        if (file.createNewFile()) {
             System.out.println("File is created!");
         } else {
             System.out.println("File already exists.");
@@ -100,5 +112,14 @@ public class Controller {
         FileWriter writer = new FileWriter(file);
         writer.write(encryptedData);
         writer.close();
+    }
+
+    public boolean isBig(char ch) {
+        int intCh = ch;
+        if (intCh >= 65 && intCh <= 90) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
