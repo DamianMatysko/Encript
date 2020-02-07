@@ -8,6 +8,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class Controller {
 
     public void selectFile(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("C:\\Users\\Firefly"));
+        fc.setInitialDirectory(new File("C:\\Users\\Firefly\\Desktop"));
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT Files", "*.txt"));
         selectedFile = fc.showOpenDialog(null);
 
@@ -82,6 +83,22 @@ public class Controller {
             newData += character;
         }
         System.out.println(newData);
+        newData="";
+        //createFile(newData);
 
+    }
+    public void createFile(String encryptedData) throws IOException {
+        File file = new File("C:\\Users\\Firefly\\IdeaProjects\\Encript\\src\\file.txt");
+
+        if (file.createNewFile())
+        {
+            System.out.println("File is created!");
+        } else {
+            System.out.println("File already exists.");
+        }
+
+        FileWriter writer = new FileWriter(file);
+        writer.write(encryptedData);
+        writer.close();
     }
 }
