@@ -47,7 +47,7 @@ public class Controller {
         int ascicode;
 
 
-        keyString = key.getText();
+        keyString = key.getText().toLowerCase();
         //keyString="abc";
         char keyAsciChar;
         int keyAsciInt;
@@ -68,7 +68,7 @@ public class Controller {
                 //pories System.out.println(j);
                 keyAsciChar=keyString.charAt(j);
                 keyAsciInt=keyAsciChar;//int
-                keyAsciInt=keyAsciInt-96;
+                keyAsciInt=keyAsciInt-97;//96
 
                 ascicode = keyAsciInt+ascicode;
                 System.out.println(keyAsciInt);
