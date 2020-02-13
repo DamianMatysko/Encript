@@ -34,6 +34,10 @@ public class Controller {
         } else {
             System.out.println("File is not valid!");
         }
+        if (key.getText().equals("")){
+            encript.setDisable(true);
+            decript.setDisable(true);
+        }
     }
 
     public void dercrypt(ActionEvent actionEvent) throws FileNotFoundException {
@@ -170,6 +174,13 @@ public class Controller {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void anableBtn(ActionEvent actionEvent) {
+        if (!key.getText().equals("") && selectedFile != null){
+            encript.setDisable(false);
+            decript.setDisable(false);
         }
     }
 }
