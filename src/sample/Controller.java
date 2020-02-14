@@ -76,7 +76,7 @@ public class Controller {
 
                 ascicode = ascicode - keyAsciInt;
                 //System.out.println(keyAsciInt);
-
+                //System.out.println(ascicode);
                 if (sizeOfChar) {
                     if (ascicode < 65) {
                         ascicode += 26;//divne
