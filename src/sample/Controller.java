@@ -78,12 +78,12 @@ public class Controller {
                 //System.out.println(keyAsciInt);
 
                 if (sizeOfChar) {
-                    if (ascicode > 90) {
-                        ascicode -= 26;//divne
+                    if (ascicode < 65) {
+                        ascicode += 26;//divne
                     }
                 } else {
-                    if (ascicode > 122) {
-                        ascicode -= 26;//divne
+                    if (ascicode < 97) {
+                        ascicode += 26;//divne
                     }
                 }
                 character = (char) ascicode;
